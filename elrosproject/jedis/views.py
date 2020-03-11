@@ -1,9 +1,16 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import get_object_or_404, render
+from django.http import HttpResponse, HttpResponseRedirect
+
+from .models import Planet, Jedi, Candidate, Tests,  Questions
 
 # Create your views here.
-def homepage(request):
-    return HttpResponse("<h2>Hollou Jedis World</h2>")
-
 def index(request):
-    return HttpResponse("<h2>index</h2>")
+    return render(request, 'jedis/index.html', {'foo': 'bar'})
+
+
+def get_jedi(request):
+    return render(request, 'jedis/index.html', {'foo': 'bar'})
+
+
+def get_candidate(request):
+    return render(request, 'jedis/index.html', {'foo': 'bar'})
