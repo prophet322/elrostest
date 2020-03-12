@@ -1,0 +1,34 @@
+{% extends 'jedis/base.html' %}
+{% load static %}
+
+
+
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-md-center">
+        <div class="col-md-auto">
+            <h1>For Candidate</h1>
+
+            <form method="POST">
+                {% csrf_token %}
+                {% for field in form %}
+
+                    <div class="form-group">
+                        {% if field.errors %}
+                            <div class="alert alert-danger">
+                                {{ field.errors }}
+                            </div>
+                        {% endif %}
+                        {{ field.label }}
+                        {{ field }}
+
+                    </div>
+                {% endfor %}
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -29,7 +29,7 @@ class Candidate(models.Model):
     planet = models.ForeignKey(Planet, on_delete=models.CASCADE)
     age = models.IntegerField(blank=False)
     email = models.EmailField(unique=True, blank=False)
-    jedi = models.ForeignKey(Jedi, on_delete=models.CASCADE)
+    jedi = models.ForeignKey(Jedi, null=True, blank=True, on_delete=models.CASCADE)
     answers = models.TextField(blank=True)
 
     def set_answers(self, x):
@@ -60,3 +60,4 @@ class Questions(models.Model):
 
     def __str__(self):
         return 'Cписок вопросов {}'.format(self.test.ordercode)
+
