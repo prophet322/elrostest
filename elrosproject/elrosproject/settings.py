@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '2a39si=84=dn#ycdv6%qy5678qkv+x(2odjun2hf5!*%#llkh7'
+SECRET_KEY = os.getenv('SECRET_KEY', '2a39si=84=dn#ycdv6%qy5678qkv+x(2odjun2hf5!*%#llkh7')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -124,6 +124,12 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = "/media/"
+
+# Configure Django App for Heroku.
+import django_heroku
+django_heroku.settings(locals())
 
 EMAIL_HOST  = os.getenv('EMAIL_HOST', '')
 EMAIL_PORT  = os.getenv('EMAIL_PORT', '')
@@ -133,3 +139,5 @@ EMAIL_RECEPIENT  = os.getenv('EMAIL_RECEPIENT', '')
 if os.getenv('EMAIL_HOST_USER'):
     EMAIL_USE_TLS = True
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+
