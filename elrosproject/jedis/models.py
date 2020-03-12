@@ -32,8 +32,8 @@ class Candidate(models.Model):
     jedi = models.ForeignKey(Jedi, null=True, blank=True, on_delete=models.CASCADE)
     answers = models.TextField(blank=True)
 
-    def set_answers(self, x):
-        self.answers = json.dumps(x)
+    def set_answers(self, answer):
+        self.answers = json.dumps(answer)
 
     def get_answers(self):
         return json.loads(self.answers)
