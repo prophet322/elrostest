@@ -1,0 +1,27 @@
+{% extends 'jedis/base.html' %}
+{% load static %}
+
+
+
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-md-center">
+        <div class="col-md-auto">
+            <h1>Выберите Джидая</h1>
+
+            <form method="GET">
+                <div class="form-group">
+                    <select name="jedi" class="form-control" required">
+                        <option value="All" selected>Просмотр Всех</option>
+                        {% for field in jedi_list %}
+                            <option value="{{ field.pk }}">{{ field.name }}</option>{% endfor %}
+                    </select>
+                    </br>
+                    <button type="submit" class="btn btn-primary">Enter</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}
