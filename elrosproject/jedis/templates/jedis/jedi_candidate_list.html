@@ -1,0 +1,31 @@
+{% extends 'jedis/base.html' %}
+{% load static %}
+
+
+
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-md-center">
+        <div class="col-md-auto">
+
+        {% if candidate_list %}
+            <h1>Просмотр кандидатов</h1>
+            </br>
+
+            {% if num %}
+                {% for field in candidate_list %}
+                    <a href="{% url 'candidate_view' candidat_id=field.pk %}">{{ field.name }}</a><br>
+                {% endfor %}
+            {% else %}
+                <h3>У Вас максимальное количество кандидатов</h3>
+            {% endif %}
+
+        {% else %}
+            <h3>На Вашей паланете нет кандидатов</h3>
+        {% endif %}
+
+        </div>
+    </div>
+</div>
+{% endblock content %}

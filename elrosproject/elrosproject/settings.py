@@ -121,3 +121,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+EMAIL_HOST  = os.getenv('EMAIL_HOST', '')
+EMAIL_PORT  = os.getenv('EMAIL_PORT', '')
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER','')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD','')
+EMAIL_RECEPIENT  = os.getenv('EMAIL_RECEPIENT', '')
+if os.getenv('EMAIL_HOST_USER'):
+    EMAIL_USE_TLS = True
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

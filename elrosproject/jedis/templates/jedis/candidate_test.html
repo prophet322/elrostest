@@ -1,0 +1,40 @@
+{% extends 'jedis/base.html' %}
+{% load static %}
+
+
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-md-center">
+        <div class="col-md-auto">
+            <h1>Тест кандидата</h1>
+
+            <form method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="user_id" value="{{ user_id }}">
+                {% for test in tests %}
+
+                    <div class="form-group">
+                        Код ордена: {{ test.0 }}<hr>
+                        {% for value in test.1 %}
+                        {{ value.2 }}</br>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="hidden" class="form-check-input" name="checkbox.{{ value.0}}"  value="False">
+                                <input type="checkbox" class="form-check-input" name="checkbox.{{ value.0}}" value="True">
+                                True
+                            </label>
+                        </div>
+                        </br>
+
+                        {% endfor %}
+
+                    </div>
+                {% endfor %}
+
+                <button type="submit" class="btn btn-primary">Отправить</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}
