@@ -1,0 +1,56 @@
+{% extends 'jedis/base.html' %}
+{% load static %}
+
+
+
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-md-center">
+        <div class="col-md-auto">
+
+
+            <h1>Анкета кандидата {{ candidat.name }}</h1>
+            </br>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label>Имя: </label>
+                    <label> {{ candidat.name }}</label>
+                    <br>
+                    <label>Планета: </label>
+                    <label> {{ candidat.planet }}</label>
+                    <br>
+                    <label>Возраст: </label>
+                    <label> {{ candidat.age }}</label>
+                    <br>
+                    <label>E-mail: </label>
+                    <label> {{ candidat.email }}</label>
+                    <br>
+                    <label>Dj</label>
+                    <label> {{ candidat.jedi }}</label>
+                    <br>
+                    <br>
+
+                    {% for answer in candidat.answers %}
+                        <label>Вопрос: </label>
+                        <label>{{ answer.answer }}</label>
+                            <br>
+                        <label>Ответ: </label>
+                        <label>{{ answer.checkbox }}</label>
+                            <br>
+                    <br>
+                    {% endfor %}
+
+
+                    </br>
+                    <input type="hidden" name="accept"  value="True">
+                    <button type="submit" class="btn btn-primary">Принять в падаваны!</button>
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+</div>
+{% endblock content %}

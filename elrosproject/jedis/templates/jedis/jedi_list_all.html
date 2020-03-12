@@ -1,0 +1,33 @@
+{% extends 'jedis/base.html' %}
+{% load static %}
+{% load extras %}
+
+{% block content %}
+        <div class="col-md-auto">
+
+
+            <h1>Статистика Джедаев</h1>
+            </br>
+                <div class="form-group">
+                    {% for jedi in jedi_list %}
+                        <label>Имя Джедая: </label>
+                        <label>{{ jedi.name }}</label><br>
+                        <label>Планета: </label>
+                        <label>{{ jedi.planet }}</label>
+                            <br>
+                        <label>Количество падаванов: </label>
+                        <label>{{ jedi.pk|candidate_len }}</label>
+                            <br>
+                        <label>Количество кандидатов на планете {{ jedi.planet }}: </label>
+                        <label>{{ jedi.planet|candidate_planet }}</label>
+                            <br>
+                        <a href="{% url 'jedi' %}?jedi={{ jedi.pk }} ">Выбрать</a>
+
+                        <hr>
+                    {% endfor %}
+
+                    </br>
+                </div>
+        </div>
+
+{% endblock content %}
