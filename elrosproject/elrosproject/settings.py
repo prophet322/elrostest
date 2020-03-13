@@ -26,6 +26,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', '2a39si=84=dn#ycdv6%qy5678qkv+x(2odjun2hf5!
 if os.getenv('DATABASE_URL'):
     DEBUG = True
     ALLOWED_HOSTS = ['*']
+    SESSION_ENGINE= 'django.contrib.sessions.backends.cached_db'
 else:
     DEBUG = True
     ALLOWED_HOSTS = []
