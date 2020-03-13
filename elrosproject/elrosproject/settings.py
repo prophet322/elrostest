@@ -76,6 +76,8 @@ WSGI_APPLICATION = 'elrosproject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -83,6 +85,10 @@ DATABASES = {
     }
 }
 
+if os.getenv('DATABASE_URL'):
+    import dj_database_url
+    db_from_env = dj_database_url.config()
+    DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
