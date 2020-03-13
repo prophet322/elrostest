@@ -1,1 +1,1 @@
-web: python elrosproject/manage.py runserver 0.0.0.0:5000 --noreload
+web: python elrosproject/manage.py runserver 0.0.0.0:$PORT --noreload
