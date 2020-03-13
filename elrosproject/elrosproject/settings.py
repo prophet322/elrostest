@@ -94,7 +94,7 @@ if os.getenv('DATABASE_URL'):
     import dj_database_url
     db_from_env = dj_database_url.config()
     DATABASES['default'].update(db_from_env)
-    os.environ['ASGI_THREADS']='3'
+    os.environ['ASGI_THREADS']='1'
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
