@@ -24,7 +24,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', '2a39si=84=dn#ycdv6%qy5678qkv+x(2odjun2hf5!
 
 # SECURITY WARNING: don't run with debug turned on in production!
 if os.getenv('DATABASE_URL'):
-    DEBUG = True
+    DEBUG = False
     ALLOWED_HOSTS = ['*']
     SESSION_ENGINE= 'django.contrib.sessions.backends.cached_db'
 else:
