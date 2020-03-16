@@ -48,8 +48,8 @@ def get_jedi(request):
 
 
 def candidate_view(request, candidat_id=0):
-    ''' GET просмотр притиндерта на падаваны Джидаем,
-        POST завпись принтиндента в падаваны '''
+    ''' GET просмотр кондидата на падаваны Джидаем,
+        POST завпись кондидата в падаваны '''
     if candidat_id > 0:
         if request.method == "GET":
             candidat = get_object_or_404(Candidate, pk=candidat_id)
