@@ -4,7 +4,7 @@ from django.core.mail import send_mail
 from django.db.models import Count
 
 from .models import Planet, Jedi, Candidate, Tests,  Questions
-from .forms import CandidateForm, JediForm
+from .forms import CandidateForm
 
 
 def SendMail(title='Jedi Academy',text='Вас успешно записали в падаваны', recepient = 'test@test.com'):
@@ -110,10 +110,7 @@ def test_candidate(request):
 
     elif request.method == "GET" and user_id:
         tests = Tests.objects.prefetch_related().all()
-        testList = []
-        for test in tests:
-            values = test.questions_set.values_list()
-            testList.append([test.ordercode, values])
+        testList = [[test.ordercode, test.questions_set.values_list()] for test in tests]
         return render(request, 'jedis/candidate_test.html', {'tests': testList, 'user_id':user_id})
 
     else:
