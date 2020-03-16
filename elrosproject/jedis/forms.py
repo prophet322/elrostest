@@ -18,15 +18,3 @@ class CandidateForm(forms.ModelForm):
             'age': forms.NumberInput(attrs={'class': 'form-control'})
         }
 
-
-class JediForm(forms.ModelForm):
-    class Meta:
-        model = Jedi
-        fields = [
-            'name',
-        ]
-
-        widgets = {
-            'name': forms.Select(attrs={'class': 'form-control'}),
-        }
-

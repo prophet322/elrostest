@@ -1,13 +1,21 @@
 from django import template
-from django.db.models import Count
 from ..models import Jedi, Candidate
 register = template.Library()
 
 @register.filter(name='candidate_len')
-def candidate_len(value):
-    return len([x for x in Jedi.objects.filter(pk=value).values('candidate__name') if x['candidate__name']])
-# coun = Jedi.objects.filter(pk=1).annotate(jedi_count=Count('candidate'))
+def candidate_len(jedi_id):
+    '''Возвращает количество падаванов у джедая'''
+    try:
+        return Jedi.objects.get(pk=jedi_id).candidate_set.all().count()
+    except:
+        return 0
+
 
 @register.filter(name='candidate_planet')
-def candidate_planet(value):
-    return len(Candidate.objects.filter(planet=value, jedi=None))
+def candidate_planet(planet_id):
+    ''' Возвращяет количество кандидатов на данной планете
+     (еще не зачисленных в падаваны) '''
+    try:
+        return Candidate.objects.filter(planet=planet_id, jedi=None).count()
+    except:
+        return 0

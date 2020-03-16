@@ -27,6 +27,8 @@ def index(request):
 
 
 def get_jedi(request):
+    ''' GET отдает список джидаев,
+        POST принимает на обрабортку выбор джидая, all или с более 1 падаваном'''
     if request.GET.get('jedi'):
         if request.GET.get('jedi') == 'All':
             jedi_list = Jedi.objects.all()
@@ -46,6 +48,8 @@ def get_jedi(request):
 
 
 def candidate_view(request, candidat_id=0):
+    ''' GET просмотр притиндерта на падаваны Джидаем,
+        POST завпись принтиндента в падаваны '''
     if candidat_id > 0:
         if request.method == "GET":
             candidat = get_object_or_404(Candidate, pk=candidat_id)
@@ -69,6 +73,8 @@ def candidate_view(request, candidat_id=0):
 
 
 def get_candidate(request):
+    ''' GET отправка личной формы кондидату на заполнение,
+        POST обрабтка личной формы, переадресация на ТЕСТ '''
     if request.method == "POST":
         form = CandidateForm(request.POST)
         if form.is_valid():
@@ -84,6 +90,8 @@ def get_candidate(request):
 
 
 def test_candidate(request):
+    ''' GET отправка теста,
+        POST обработка результатов тестирования '''
     user_id = request.session.get('usr_id')
     if request.method == "POST" and user_id:
         post = request.POST
